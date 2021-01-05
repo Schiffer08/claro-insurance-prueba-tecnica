@@ -1,0 +1,7 @@
+.bg-login {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    background-image: url(../../../assets/images/bg_login.jpg);
+    background-blend-mode: color;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

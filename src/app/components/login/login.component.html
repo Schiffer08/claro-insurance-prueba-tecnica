@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="col-md-12">
+    <div class="row" style="height: 100vh;">
+        <div class="col-md-9 bg-login" style="padding: 0px;"></div>
+        <div class="col-md-3 mt-5" style="left: -10px;">
+            <div class="container-fluid">
+                <h5>SIGN IN</h5>
+                <h4>¡WELCOME!</h4>
+                <form [formGroup]="formLogin" (ngSubmit)="userLogin(formLogin)" class="mt-5">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User:</label>
+                        <input type="email" class="form-control" [formControl]="formLogin.controls['username']" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onkeypress="return ((event.charCode >= 97 && event.charCode <= 122))">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password:</label>
+                        <input type="password" class="form-control" [formControl]="formLogin.controls['password']" id="exampleInputPassword1" placeholder="Password" onkeypress="return ((event.charCode >= 33 && event.charCode <= 96) || (event.charCode >= 123 && event.charCode <= 126))">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">
+                        <label class="form-check-label" for="exampleCheck1">I Agree to Privacy Policy</label>
+                    </div>
+                    <div class="row justify-content-md-center mt-2">
+                        <button type="submit" class="btn btn-primary" routerLink="/home" [disabled]="!checked">Sign In</button>
+                    </div>
+                    <div class="row justify-content-md-center mt-2">
+                        <span>¿Not a member? <a routerLink="/user/register" routerLinkActive="active">Click here</a></span>
+                    </div>
+                    <div class="row justify-content-md-center mt-2">
+                        <span>¿Don't have an account? <a routerLink="/user/register" routerLinkActive="active">SIGN UP</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
