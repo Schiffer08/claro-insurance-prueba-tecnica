@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
 
   userLogin(formLogin: NgForm){
     if (formLogin.valid) {
-      alert("TESTING");
       this.router.navigate(["/home"]);
+      alert("DATOS CORRECTOS");
     } else {
       alert("DATOS INCORRECTOS");
     }

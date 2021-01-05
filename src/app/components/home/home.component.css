@@ -1,0 +1,9 @@
+.hidden-line-header{
+    border-bottom: hidden;
+    border-top: hidden;
+}
+
+.color-th {
+    background-color: #56e0b7 !important;
+    color: white;
+}
