@@ -21,12 +21,21 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getAllPlayers();
+    this.getAllPlayers();
+    this.getSpecificTeam();
   }
 
   getAllPlayers(){
     this.playerservices.getAllPlayers().subscribe((response) => {
       console.log("DATA PLAYERS", response);
+      //this.data = response.results;
+      //this.totalRecord = response.results.length;
+    })
+  }
+
+  getSpecificTeam(){
+    this.playerservices.getAllPlayers().subscribe((response) => {
+      console.log("DATA PLAYERS SPECIFICS", response);
       //this.data = response.results;
       //this.totalRecord = response.results.length;
     })

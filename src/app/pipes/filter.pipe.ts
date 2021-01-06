@@ -6,13 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(teams: any, term: string): any {
-    //check if the search term is defined
-    // if(!teams || !term) return teams;
+    // check if the search term is defined
+    if(!teams || !term) return teams;
 
-    //return updated animals array
-    //  teams.filter(function(team){
-    //   return team.Animal.toLowerCase().includes(term.toLowerCase());
-    // })
+    return teams;
+     teams.filter(function(team){
+      return team.Animal.toLowerCase().includes(term.toLowerCase());
+    })
   } 
 
 }

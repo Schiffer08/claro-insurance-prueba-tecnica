@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepperModule } from '@angular/material/stepper';
 
 //Pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -33,6 +34,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

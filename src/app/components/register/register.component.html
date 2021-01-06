@@ -1,1 +1,172 @@
-<p>register works!</p>
+<button mat-raised-button (click)="isEditable = !isEditable">
+    {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+  </button>
+  
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nombre:</label>
+                        <input type="text" formControlName="name" class="form-control" style="text-transform: uppercase;" id="exampleInputName1" aria-describedby="nameHelp" minlength="3" maxlength="20" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Introduzca su nombre" required>
+                        <div>
+                            <div *ngIf="firstFormGroup.get('name').hasError('minlength')">El nombre debe contener un mínimo de 3 carácteres.</div>
+                            <div *ngIf="firstFormGroup.get('name').hasError('maxlength')">El nombre debe contener un máximo de 20 carácteres.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Apellido:</label>
+                        <input type="text" formControlName="lastname" class="form-control" style="text-transform: uppercase;" id="exampleInputLastname1" aria-describedby="lastnameHelp" minlength="3" maxlength="20" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Introduzca su apellido" required>
+                        <div>
+                            <div *ngIf="firstFormGroup.get('lastname').hasError('minlength')">El apellido debe contener un mínimo de 3 carácteres.</div>
+                            <div *ngIf="firstFormGroup.get('lastname').hasError('maxlength')">El apellido debe contener un máximo de 20 carácteres.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Altura Pulgadas:</label>
+                        <input type="text" formControlName="heightInches" class="form-control" id="exampleInputHeightInches1" aria-describedby="heightInchesHelp" placeholder="Introduzca su altura (pulgadas)" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Altura Pies:</label>
+                        <input type="text" formControlName="heightFeet" class="form-control" id="exampleInputHeightFeet1" aria-describedby="heightFeetHelp" placeholder="Introduzca su altura (pies)" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Peso:</label>
+                        <input type="text" formControlName="weight" class="form-control" id="exampleInputWeight1" aria-describedby="weightHelp" placeholder="Introduzca su peso" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Posición:</label>
+                        <input type="text" formControlName="position" class="form-control" id="exampleInputPosition1" aria-describedby="positionHelp" placeholder="Enter email" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Fecha de Nacimiento:</label>
+                        <input type="text" formControlName="date" class="form-control" id="exampleInputDate1" aria-describedby="dateHelp" placeholder="Enter email" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Edad:</label>
+                        <input type="text" formControlName="age" class="form-control" id="exampleInputAge1" aria-describedby="ageHelp" placeholder="Introduzca su edad" required>
+                    </div>
+                </div>
+            </div>
+            <div>
+              <button matStepperNext class="btn btn-primary">Next</button>
+            </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Abreviatura:</label>
+                        <input type="text" formControlName="abbreviation" class="form-control" id="exampleInputabbreviation1" aria-describedby="abbreviationHelp" placeholder="ABC" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Conferencia:</label>
+                        <input type="text" formControlName="conference" class="form-control" id="exampleInputConference1" aria-describedby="conferenceHelp" placeholder="Conferencia" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Comentarios:</label>
+                        <input type="text" formControlName="comments" class="form-control" id="exampleInputComments1" aria-describedby="commentsHelp" placeholder="Introduzca su comentario aquí..." required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nombre de Equipo:</label>
+                        <input type="text" formControlName="nameTeam" class="form-control" id="exampleInputNameTeam1" aria-describedby="nameTeamHelp" placeholder="Introduzca el nombre del equipo" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ciudad:</label>
+                        <input type="text" formControlName="city" class="form-control" id="exampleInputCity1" aria-describedby="cityHelp" placeholder="Introduzca una ciudad" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary">Agregar</button>
+            </div>
+            <table class="table table-striped">
+                <!-- <table class="table table-striped" *ngFor="let user of data | filter: { 
+                                                    id: 'listing_pagination',
+                                                    itemsPerPage: 10,
+                                                    currentPage: page,
+                                                    totalItems: totalRecord }"> -->
+                    <thead>
+                        <tr>
+                            <th class="hidden-line-header color-th text-center">Abreviatura</th>
+                            <th class="hidden-line-header color-th text-center">Conferencia</th>
+                            <th class="hidden-line-header color-th text-center">Comentario</th>
+                            <th class="hidden-line-header color-th text-center">Nombre de Equipo</th>
+                            <th class="hidden-line-header color-th text-center">Ciudad</th>
+                            <th class="hidden-line-header color-th text-center">Acciones</th>
+                            <!-- <th class="color-text hidden-line-header text-center color-th" style="width: 11%;">Acciones</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- <tbody *ngFor="let forum of forums"> -->
+                        <tr style="cursor: pointer;">
+                            <td class="vertical-items-center text-center">
+                                <p>1</p>
+                            </td>
+                            <td class="vertical-items-center text-center">
+                                <p>Orlando</p>
+                            </td>
+                            <td class="vertical-items-center text-center">
+                                <p>NULL</p>
+                            </td>
+                            <td class="vertical-items-center text-center">
+                                <p>NULL</p>
+                            </td>
+                            <td class="vertical-items-center text-center">
+                                <p>Pereira</p>
+                            </td>
+                            <td class="vertical-items-center text-center">
+                                <p>MATERIAL ICONS</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <div>
+              <button matStepperNext class="btn btn-primary">Next</button>
+            </div>
+        </div>
+
+        <div>
+            <button matStepperPrevious class="btn btn-primary">Back</button>
+            <button matStepperNext class="btn btn-primary">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>¡El registro ha finalizado correctamente!</p>
+      <div>
+        <button matStepperPrevious class="btn btn-primary">Back</button>
+        <button class="btn btn-primary" (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
