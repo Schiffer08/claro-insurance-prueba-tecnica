@@ -56,17 +56,17 @@ export class RegisterComponent implements OnInit {
 
   addDataForm(){
     let customObj = new Custom();
-    customObj.abbreviation = this.secondFormGroup.controls['abbreviation'].get;
-    customObj.conference = this.secondFormGroup.controls['conference'].get;
-    customObj.comments = this.secondFormGroup.controls['comments'].get;
-    customObj.nameteam = this.secondFormGroup.controls['nameTeam'].get;
-    customObj.city = this.secondFormGroup.controls['city'].get;
-    console.log("DATA 1", customObj.abbreviation)
-    console.log("DATA 2", customObj.conference)
-    console.log("DATA 3", customObj.comments)
-    console.log("DATA 4", customObj.nameteam)
-    console.log("DATA 5", customObj.city)
+    customObj.abbreviation = this.secondFormGroup.get['abbreviation'].value;
+    customObj.conference = this.secondFormGroup.get['conference'].value;
+    customObj.comments = this.secondFormGroup.get['comments'].value;
+    customObj.nameteam = this.secondFormGroup.get['nameTeam'].value;
+    customObj.city = this.secondFormGroup.get['city'].value;
+    // console.log("DATA 1", customObj.abbreviation)
+    // console.log("DATA 2", customObj.conference)
+    // console.log("DATA 3", customObj.comments)
+    // console.log("DATA 4", customObj.nameteam)
+    // console.log("DATA 5", customObj.city)
     this.dataform.push(customObj);
-    console.log("ARRAY", this.dataform);
+    // console.log("ARRAY", this.dataform);
   }
 }
