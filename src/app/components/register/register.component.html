@@ -1,6 +1,6 @@
 <button mat-raised-button (click)="isEditable = !isEditable">
     {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-  </button>
+</button>
   
   <mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
@@ -11,7 +11,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nombre:</label>
-                        <input type="text" formControlName="name" class="form-control" style="text-transform: uppercase;" id="exampleInputName1" aria-describedby="nameHelp" minlength="3" maxlength="20" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Introduzca su nombre" required>
+                        <input type="text" formControlName="name" class="form-control" style="text-transform: uppercase;" id="exampleInputName1" aria-describedby="nameHelp" minlength="3" maxlength="20" autofocus onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Introduzca su nombre" required>
                         <div>
                             <div *ngIf="firstFormGroup.get('name').hasError('minlength')">El nombre debe contener un mínimo de 3 carácteres.</div>
                             <div *ngIf="firstFormGroup.get('name').hasError('maxlength')">El nombre debe contener un máximo de 20 carácteres.</div>
@@ -31,37 +31,69 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Altura Pulgadas:</label>
-                        <input type="text" formControlName="heightInches" class="form-control" id="exampleInputHeightInches1" aria-describedby="heightInchesHelp" placeholder="Introduzca su altura (pulgadas)" required>
+                        <input type="text" formControlName="heightInches" class="form-control" id="exampleInputHeightInches1" aria-describedby="heightInchesHelp" maxlength="2" placeholder="INTRODUZCA SU ALTURA (PULGADAS)">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Altura Pies:</label>
-                        <input type="text" formControlName="heightFeet" class="form-control" id="exampleInputHeightFeet1" aria-describedby="heightFeetHelp" placeholder="Introduzca su altura (pies)" required>
+                        <input type="text" formControlName="heightFeet" class="form-control" id="exampleInputHeightFeet1" aria-describedby="heightFeetHelp" placeholder="INTRODUZCA SU ALTURA (PIES)">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Peso:</label>
-                        <input type="text" formControlName="weight" class="form-control" id="exampleInputWeight1" aria-describedby="weightHelp" placeholder="Introduzca su peso" required>
+                        <input type="text" formControlName="weight" class="form-control" id="exampleInputWeight1" aria-describedby="weightHelp" placeholder="INTRODUZCA SU PESO">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Posición:</label>
-                        <input type="text" formControlName="position" class="form-control" id="exampleInputPosition1" aria-describedby="positionHelp" placeholder="Enter email" required>
+                        <select class="form-control" formControlName="position" id="exampleFormControlSelect1" placeholder="Seleccione una opción" (change)="changePosition($event)">
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                        </select>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-top: 10px;">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Fecha de Nacimiento:</label>
-                        <input type="text" formControlName="date" class="form-control" id="exampleInputDate1" aria-describedby="dateHelp" placeholder="Enter email" required>
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>FECHA DE NACIMIENTO:</mat-label>
+                            <input matInput [matDatepicker]="picker" id="birthdate" name="date" formControlName="date" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Edad:</label>
-                        <input type="text" formControlName="age" class="form-control" id="exampleInputAge1" aria-describedby="ageHelp" placeholder="Introduzca su edad" required>
+                        <input readonly type="text" formControlName="age" class="form-control" id="exampleInputAge1" aria-describedby="ageHelp" placeholder="EDAD">
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="this.position == 'C'">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Comentarios:</label>
+                        <input type="text" formControlName="comments" class="form-control" id="exampleInputAge1" aria-describedby="ageHelp" placeholder="COMENTARIO...">
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="this.position == 'C'">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Años en posición:</label>
+                        <input type="text" formControlName="ageposition" class="form-control" id="exampleInputAge1" aria-describedby="ageHelp" placeholder="INTRODUZCA AÑOS EN POSICIÓN">
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="this.position == 'C'">
+                    <p>Otras posiciones en la que ha jugado:</p>
+                    <div class="form-group form-check">
+                        <input type="checkbox" name="position" value="A">A     
+                        <input type="checkbox" name="position" value="B">B      
+                        <input type="checkbox" name="position" value="C" onclick="return false;" checked>C
+                        <input type="checkbox" name="position" value="D">D
+                        <input type="checkbox" name="position" value="E">E
                     </div>
                 </div>
             </div>
@@ -79,7 +111,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Abreviatura:</label>
-                        <input type="text" formControlName="abbreviation" class="form-control" id="exampleInputabbreviation1" aria-describedby="abbreviationHelp" placeholder="ABC" required>
+                        <input type="text" formControlName="abbreviation" class="form-control" id="exampleInputabbreviation1" aria-describedby="abbreviationHelp" autofocus placeholder="ABC" required>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -106,7 +138,9 @@
                         <input type="text" formControlName="city" class="form-control" id="exampleInputCity1" aria-describedby="cityHelp" placeholder="Introduzca una ciudad" required>
                     </div>
                 </div>
-                <button class="btn btn-primary">Agregar</button>
+                <div class="col-md-4 text-center" style="align-self: center;">
+                    <button class="btn btn-primary" (click)="addDataForm()">Agregar</button>
+                </div>
             </div>
             <table class="table table-striped">
                 <!-- <table class="table table-striped" *ngFor="let user of data | filter: { 
@@ -129,29 +163,26 @@
                     <!-- <tbody *ngFor="let forum of forums"> -->
                         <tr style="cursor: pointer;">
                             <td class="vertical-items-center text-center">
-                                <p>1</p>
+                                <p>{{this.CustomVar.abbreviation}}</p>
                             </td>
                             <td class="vertical-items-center text-center">
-                                <p>Orlando</p>
+                                <p>{{this.CustomVar.conference}}</p>
                             </td>
                             <td class="vertical-items-center text-center">
-                                <p>NULL</p>
+                                <p>{{this.CustomVar.comments}}</p>
                             </td>
                             <td class="vertical-items-center text-center">
-                                <p>NULL</p>
+                                <p>{{this.CustomVar.nameteam}}</p>
                             </td>
                             <td class="vertical-items-center text-center">
-                                <p>Pereira</p>
+                                <p>{{this.CustomVar.city}}</p>
                             </td>
                             <td class="vertical-items-center text-center">
                                 <p>MATERIAL ICONS</p>
                             </td>
                         </tr>
                     </tbody>
-                </table>
-            <div>
-              <button matStepperNext class="btn btn-primary">Next</button>
-            </div>
+            </table>
         </div>
 
         <div>

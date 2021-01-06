@@ -13,7 +13,9 @@ export class HomeComponent implements OnInit {
   public data: Array<any>;
   public totalRecord: string;
   public page: number = 1;
-
+  
+  public dataTeam: any;
+  public currentId: number = 0;
   public term: any;
 
   constructor(private playerservices: PlayersService) { 
@@ -22,22 +24,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getAllPlayers();
-    this.getSpecificTeam();
   }
 
   getAllPlayers(){
     this.playerservices.getAllPlayers().subscribe((response) => {
       console.log("DATA PLAYERS", response);
-      //this.data = response.results;
-      //this.totalRecord = response.results.length;
+      this.data = response.data;
+      // this.totalRecord = response.results.length;
     })
   }
 
-  getSpecificTeam(){
-    this.playerservices.getAllPlayers().subscribe((response) => {
+  getSpecificTeam(id: number){
+    this.playerservices.getSpecificTeam(id).subscribe((response) => {
+      this.currentId = id;
+      this.dataTeam = response;
       console.log("DATA PLAYERS SPECIFICS", response);
-      //this.data = response.results;
-      //this.totalRecord = response.results.length;
+      console.log("CURRENT ID", id);
     })
   }
 

@@ -5,14 +5,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(teams: any, term: string): any {
-    // check if the search term is defined
-    if(!teams || !term) return teams;
+  transform(value: any, args?: any): any {
 
-    return teams;
-     teams.filter(function(team){
-      return team.Animal.toLowerCase().includes(term.toLowerCase());
-    })
-  } 
+    if(!value)return null;
+    if(!args)return value;
+
+    args = args.toLowerCase();
+
+    return value.filter(function(item){
+        return JSON.stringify(item).toLowerCase().includes(args);
+    });
+}
 
 }

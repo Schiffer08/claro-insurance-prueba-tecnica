@@ -3,126 +3,125 @@
     <!-- <form [formGroup]="formTable" (ngSubmit)="userLogin(formLogin)" class="mt-5"> -->    
         <div class="input-group">
             <div class="form-group mr-3">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Filter By</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>All</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
+                <label for="exampleFormControlSelect1">Filter By</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>All</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Search:</label>
-                <input type="password" class="form-control" id="exampleInputSearch" [(ngModel)]= "term" [ngModelOptions]="{standalone: true}" placeholder="Search">
+                <input type="text" class="form-control" id="exampleInputSearch" [(ngModel)]= "term" [ngModelOptions]="{standalone: true}" placeholder="Search">
             </div>
         </div>
     </form>
 </div>
 <div class="col-md-12">
     <div class="row">
+        <div class="col-md-12" *ngIf="currentId != 0">
+            <div class="row">
+                <div class="col-md-12 text-center mb-2">
+                    <h4>Detalles del Equipo de Baloncesto</h4>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.name}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.conference}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.abbreviation}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.full_name}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.division}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.city}}</p>
+                </div>
+            </div>
+        </div>
         <table class="table table-striped">
-        <!-- <table class="table table-striped" *ngFor="let user of data | filter: { 
-                                            id: 'listing_pagination',
-                                            itemsPerPage: 10,
-                                            currentPage: page,
-                                            totalItems: totalRecord }"> -->
             <thead>
                 <tr>
-                    <th class="hidden-line-header color-th text-center">id</th>
-                    <th class="hidden-line-header color-th text-center">first name</th>
-                    <th class="hidden-line-header color-th text-center">height_feet</th>
-                    <th class="hidden-line-header color-th text-center">height_inches</th>
-                    <th class="hidden-line-header color-th text-center">last_name</th>
-                    <th class="hidden-line-header color-th text-center">Position</th>
-                    <th class="hidden-line-header color-th text-center">team</th>
-                    <th class="hidden-line-header color-th text-center">weight_pounds</th>
-                    <!-- <th class="color-text hidden-line-header text-center color-th" style="width: 11%;">Acciones</th> -->
+                    <th class="hidden-line-header color-th text-center">ID</th>
+                    <th class="hidden-line-header color-th text-center">Nombre</th>
+                    <th class="hidden-line-header color-th text-center">Altura Pulgada</th>
+                    <th class="hidden-line-header color-th text-center">Altura Pies</th>
+                    <th class="hidden-line-header color-th text-center">Apellido</th>
+                    <th class="hidden-line-header color-th text-center">Posición</th>
+                    <th class="hidden-line-header color-th text-center">Peso</th>
                 </tr>
             </thead>
-            <tbody>
-            <!-- <tbody *ngFor="let forum of forums"> -->
-                <tr style="cursor: pointer;">
+            <tbody *ngFor="let user of data | paginate: { 
+                    id: 'listing_pagination',
+                    itemsPerPage: 25,
+                    currentPage: page,
+                    totalItems: totalRecord } | filter:term">
+                <tr style="cursor: pointer;" (click)="getSpecificTeam(user.id);">
                     <td class="vertical-items-center text-center">
-                        <p>1</p>
+                        <p *ngIf="user.position == 'A'" style="color: blueviolet;">{{user.id}}</p>
+                        <p *ngIf="user.position == 'B'" style="color:cadetblue;">{{user.id}}</p>
+                        <p *ngIf="user.position == 'C'" style="color: red;">{{user.id}}</p>
+                        <p *ngIf="user.position == 'D'" style="color: forestgreen;">{{user.id}}</p>
+                        <p *ngIf="user.position == 'E'" style="color: yellow;">{{user.id}}</p>
+                        <p *ngIf="user.position == 'F'" style="color:turquoise;">{{user.id}}</p>
+                        <p *ngIf="user.position == 'G'" style="color:sandybrown;">{{user.id}}</p>
+                        <p *ngIf="user.position == 'null'" style="color:gray;">{{user.id}}</p>
                     </td>
                     <td class="vertical-items-center text-center">
-                        <p>Orlando</p>
+                        <p>{{user.first_name != null ? user.first_name : "-"}}</p>
                     </td>
                     <td class="vertical-items-center text-center">
-                        <p>NULL</p>
+                        <p>{{user.height_inches != null ? user.height_inches : "-"}}</p>
                     </td>
                     <td class="vertical-items-center text-center">
-                        <p>NULL</p>
+                        <p>{{user.height_feet != null ? user.height_feet : "-"}}</p>
                     </td>
                     <td class="vertical-items-center text-center">
-                        <p>Pereira</p>
+                        <p>{{user.last_name != null ? user.last_name : "-"}}</p>
                     </td>
                     <td class="vertical-items-center text-center">
-                        <p>C</p>
+                        <p>{{user.position != null ? user.position : "-"}}</p>
                     </td>
                     <td class="vertical-items-center text-center">
-                        <p>Magallanes</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>NULL</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="vertical-items-center text-center">
-                        <p>1</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>Orlando</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>NULL</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>NULL</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>Pereira</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>C</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>Magallanes</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>NULL</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="vertical-items-center text-center">
-                        <p>1</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>Orlando</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>NULL</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>NULL</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>Pereira</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>C</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>Magallanes</p>
-                    </td>
-                    <td class="vertical-items-center text-center">
-                        <p>NULL</p>
+                        <p>{{user.weight_pounds != null ? user.weight_pounds : "-"}}</p>
                     </td>
                 </tr>
             </tbody>
-          </table>
+        </table>
+        <div class="text-center">
+            <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+        </div>
+        <!-- <div class="col-md-12" *ngIf="currentId != 0">
+            <div class="row">
+                <div class="col-md-12 text-center mb-2">
+                    <h4>Detalles del Equipo de Baloncesto</h4>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.name}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.conference}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.abbreviation}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.full_name}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.division}}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{{this.dataTeam.city}}</p>
+                </div>
+            </div>
+        </div> -->
     </div>
 </div>
